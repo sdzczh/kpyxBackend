@@ -11,6 +11,10 @@ import cn.stylefeng.guns.core.log.LogObjectHolder;
 import org.springframework.web.bind.annotation.RequestParam;
 import cn.stylefeng.guns.modular.system.model.Banner;
 import cn.stylefeng.guns.modular.Banner.service.IBannerService;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Banner管理控制器
@@ -68,8 +72,21 @@ public class BannerController extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add(Banner banner) {
-        bannerService.insert(banner);
+    public Object add(Banner banner, @RequestParam("img_url") MultipartFile img_url) {
+        if (img_url.isEmpty()) {
+            return "上传失败，请选择文件";
+        }
+
+        String fileName = img_url.getOriginalFilename();
+        String filePath = "i:/img/";
+        File dest = new File(filePath + fileName);
+        try {
+            img_url.transferTo(dest);
+            banner.setImgUrl(filePath + fileName);
+            bannerService.insert(banner);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
         return SUCCESS_TIP;
     }
 
