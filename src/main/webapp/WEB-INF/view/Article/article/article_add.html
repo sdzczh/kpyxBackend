@@ -1,0 +1,63 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-12 b-r">
+                    <#input id="title" name="文章题目" underline="true"/>
+                    <select id="type" class="form-control">
+                        <option value="">请选择文章类型</option>
+                        <option value="0">开奖公告</option>
+                        <option value="1">政策法规</option>
+                        <option value="2">新闻资讯</option>
+                        <option value="3">常见问题</option>
+                        <option value="4">通知公告</option>
+                    </select>
+                    <hr>
+                    <div id="content">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ArticleInfoDlg.sub()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ArticleInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/js/plugins/wangEditor/wangEditor.js"></script>
+<script src="${ctxPath}/static/modular/Article/article/article_info.js"></script>
+<script type="text/javascript">
+    /*var E = window.wangEditor
+    var editor = new E('#content')
+    editor.customConfig.uploadFileName = 'myFile'; //设置文件上传的参数名称
+    editor.customConfig.uploadImgServer = '${ctxPath}/article/upload'; //设置上传文件的服务器路径
+    //自定义上传图片事件
+    editor.customConfig.uploadImgHooks = {
+        before : function(xhr, editor, files) {
+
+        },
+        success : function(xhr, editor, result) {
+            console.log("上传成功");
+        },
+        fail : function(xhr, editor, result) {
+            console.log("上传失败,原因是"+result);
+        },
+        error : function(xhr, editor) {
+            console.log("上传出错");
+        },
+        timeout : function(xhr, editor) {
+            console.log("上传超时");
+        }
+    };
+    editor.create()*/
+    var E = window.wangEditor;
+    var editor = new E('#content');
+    editor.create();
+</script>
+@}

@@ -1,0 +1,52 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>发票记录管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <#NameCon id="phone" name="手机号" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="invoiceId" name="发票编码" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="idCardNum" name="身份证号" />
+                            </div>
+                            <div class="col-sm-2">
+                                <select id="state" class="form-control">
+                                    <option value="">----请选择发票状态----</option>
+                                    <option value="0">无效</option>
+                                    <option value="1">有效</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="Invoice.search()"/>
+                                <#button name="重置" icon="fa-reply" clickFun="Invoice.reset()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="InvoiceTableToolbar" role="group">
+                            @if(shiro.hasPermission("/invoice/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="Invoice.openAddInvoice()"/>
+                            @}
+                            @if(shiro.hasPermission("/invoice/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="Invoice.openInvoiceDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/invoice/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="Invoice.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="InvoiceTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/invoice/invoice/invoice.js"></script>
+@}

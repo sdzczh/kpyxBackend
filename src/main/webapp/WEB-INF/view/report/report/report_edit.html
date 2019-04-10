@@ -1,0 +1,37 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="ID" value="${item.id}" underline="true"/>
+                            <#input id="name" name="举报人姓名" value="${item.name}" underline="true"/>
+                            <#input id="phone" name="举报人手机号" value="${item.phone}" underline="true"/>
+                            <#input id="beReportedCompanyName" name="被举报企业名称" value="${item.beReportedCompanyName}" underline="true"/>
+                            <#input id="beReportedName" name="被举报者姓名" value="${item.beReportedName}" underline="true"/>
+                            <#input id="beReportedAddress" name="被举报人地址" value="${item.beReportedAddress}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="economicNature" name="经济性质" value="${item.economicNature}" underline="true"/>
+                            <#input id="proveInformation" name="证明信息" value="${item.proveInformation}" underline="true"/>
+                            <#input id="content" name="举报内容" value="${item.content}" underline="true"/>
+                            <#input id="imgUrl" name="图片地址" value="${item.imgUrl}" underline="true"/>
+                            <#input id="createTime" name="创建时间" value="${item.createTime}" underline="true"/>
+                            <#input id="updateTime" name="更新时间" value="${item.updateTime}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ReportInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ReportInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/report/report/report_info.js"></script>
+@}

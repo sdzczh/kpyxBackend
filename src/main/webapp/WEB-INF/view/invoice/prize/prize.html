@@ -1,0 +1,65 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>中奖记录管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <#NameCon id="phone" name="手机号" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="invoiceId" name="发票编码" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="idCardNum" name="身份证号" />
+                            </div>
+                            <div class="col-sm-2">
+                                <select id="type" class="form-control">
+                                    <option value="">----请选择中奖类型----</option>
+                                    <option value="0">场内特等奖</option>
+                                    <option value="1">场内一等奖</option>
+                                    <option value="2">场内二等奖</option>
+                                    <option value="3">场内三等奖</option>
+                                    <option value="4">场内四等奖（1000）</option>
+                                    <option value="5">场内四等奖（800）</option>
+                                    <option value="6">场内四等奖（600）</option>
+                                    <option value="7">场内四等奖（400）</option>
+                                    <option value="8">场内幸运奖（1000）</option>
+                                    <option value="9">场内入围奖（100）</option>
+                                    <option value="10">场外一等奖（6000）</option>
+                                    <option value="11">场外二等奖（4000）</option>
+                                    <option value="12">场外三等奖（2000）</option>
+                                    <option value="13">场外参与奖（100）</option>
+                                </select>
+
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="Prize.search()"/>
+                                <#button name="重置" icon="fa-reply" clickFun="Prize.reset()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="PrizeTableToolbar" role="group">
+                            @if(shiro.hasPermission("/prize/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="Prize.openAddPrize()"/>
+                            @}
+                            @if(shiro.hasPermission("/prize/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="Prize.openPrizeDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/prize/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="Prize.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="PrizeTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/invoice/prize/prize.js"></script>
+@}
