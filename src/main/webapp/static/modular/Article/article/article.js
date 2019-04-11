@@ -53,6 +53,22 @@ Article.openAddArticle = function () {
     });
     this.layerIndex = index;
 };
+/**
+ * 点击查看文章
+ */
+Article.openShow = function () {
+    if (this.check()) {
+        var index = layer.open({
+            type: 2,
+            title: '文章预览',
+            area: ['800px', '760px'], //宽高
+            fix: false, //不固定
+            maxmin: true,
+            content: Feng.ctxPath + '/article/show/' + Article.seItem.id
+        });
+        this.layerIndex = index;
+    }
+};
 
 /**
  * 打开查看文章管理详情

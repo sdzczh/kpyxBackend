@@ -62,6 +62,17 @@ public class ArticleController extends BaseController {
     }
 
     /**
+     * 跳转到添加文章管理
+     */
+    @RequestMapping("/show/{articleId}")
+    public String show(@PathVariable Integer articleId, Model model) {
+        Article article = articleService.selectById(articleId);
+        model.addAttribute("item",article);
+        LogObjectHolder.me().set(article);
+        return PREFIX + "show.html";
+    }
+
+    /**
      * 跳转到修改文章管理
      */
     @RequestMapping("/article_update/{articleId}")
