@@ -12,6 +12,10 @@ import cn.stylefeng.guns.core.log.LogObjectHolder;
 import org.springframework.web.bind.annotation.RequestParam;
 import cn.stylefeng.guns.modular.system.model.Videos;
 import cn.stylefeng.guns.modular.videos.service.IVideosService;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 视频管理控制器
@@ -71,8 +75,21 @@ public class VideosController extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add(Videos videos) {
-        videosService.insert(videos);
+    public Object add(Videos videos, @RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return "上传失败，请选择文件";
+        }
+
+        String fileName = file.getOriginalFilename();
+        String filePath = "i:/img/";
+        File dest = new File(filePath + fileName);
+        try {
+            file.transferTo(dest);
+            videos.setVideoUrl(filePath + fileName);
+            videosService.insert(videos);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
         return SUCCESS_TIP;
     }
 
