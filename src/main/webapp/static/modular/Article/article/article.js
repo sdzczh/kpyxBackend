@@ -19,6 +19,7 @@ Article.initColumn = function () {
             {title: '作者名称', field: 'author', visible: true, align: 'center', valign: 'middle'},
             {title: '内容', field: 'content', visible: true, align: 'center', valign: 'middle'},
             {title: '文章类型', field: 'Type', visible: true, align: 'center', valign: 'middle'},
+            {title: '期数', field: 'number', visible: true, align: 'center', valign: 'middle'},
             {title: '点击次数', field: 'clinkNum', visible: true, align: 'center', valign: 'middle'},
             {title: '创建时间', field: 'createTime', visible: true, align: 'center', valign: 'middle'},
             {title: '更新时间', field: 'updateTime', visible: true, align: 'center', valign: 'middle'}

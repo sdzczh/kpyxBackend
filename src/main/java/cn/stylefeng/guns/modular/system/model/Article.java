@@ -43,6 +43,10 @@ public class Article extends Model<Article> {
      */
     private Integer type;
     /**
+     * 期数 （开奖公告有效）
+     */
+    private Integer number;
+    /**
      * 点击次数
      */
     @TableField("clink_num")
@@ -89,6 +93,14 @@ public class Article extends Model<Article> {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public Integer getType() {

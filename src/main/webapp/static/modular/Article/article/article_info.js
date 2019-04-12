@@ -51,6 +51,7 @@ ArticleInfoDlg.collectData = function() {
     .set('author')
     .set('type')
     .set('clinkNum')
+    .set('number')
     .set('createTime')
     .set('updateTime')
     .set('content',ArticleInfoDlg.editor.txt.html());
@@ -102,6 +103,7 @@ $(function() {
 ArticleInfoDlg.sub = function () {
     var title = document.getElementById('title').value;
     var type = document.getElementById('type').value;
+    var number = document.getElementById('numbers').value;
     var content = editor.txt.html();
     $.ajax({
         type : "post",
@@ -109,7 +111,8 @@ ArticleInfoDlg.sub = function () {
         data : {
             'title' : title,
             "content" : content,
-            type : type
+            type : type,
+            number : number
         },
         success : function(result) {
             Feng.success("添加成功!");

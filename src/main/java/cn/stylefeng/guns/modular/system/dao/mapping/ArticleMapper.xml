@@ -9,6 +9,7 @@
         <result column="author" property="author" />
         <result column="content" property="content" />
         <result column="type" property="type" />
+        <result column="number" property="number" />
         <result column="clink_num" property="clinkNum" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
@@ -16,7 +17,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, title, author, content, type, clink_num, create_time, update_time
+        id, title, author, content, type,number, clink_num, create_time, update_time
     </sql>
 
 </mapper>
