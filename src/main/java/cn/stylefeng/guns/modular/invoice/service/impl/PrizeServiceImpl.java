@@ -25,7 +25,7 @@ public class PrizeServiceImpl extends ServiceImpl<PrizeMapper, Prize> implements
     @Autowired
     private PrizeMapper prizeMapper;
     @Override
-    public List<Map<String, Object>> selectLists(Page<Prize> page, String phone, String invoiceId, String idCardNum, Integer type) {
-        return prizeMapper.selectLists(page, phone, invoiceId, idCardNum, type);
+    public List<Map<String, Object>> selectLists(Page<Prize> page, String phone, Integer number, String invoiceId, String idCardNum, Integer type) {
+        return prizeMapper.selectLists(page, phone, number, invoiceId, idCardNum, type);
     }
 }

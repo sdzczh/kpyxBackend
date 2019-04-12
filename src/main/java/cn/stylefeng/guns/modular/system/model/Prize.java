@@ -36,6 +36,10 @@ public class Prize extends Model<Prize> {
      */
     private Integer type;
     /**
+     * 期数
+     */
+    private Integer number;
+    /**
      * 创建时间
      */
     @TableField("create_time")
@@ -65,6 +69,14 @@ public class Prize extends Model<Prize> {
 
     public Integer getType() {
         return type;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public void setType(Integer type) {

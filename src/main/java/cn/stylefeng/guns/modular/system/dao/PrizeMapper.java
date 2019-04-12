@@ -18,5 +18,5 @@ import java.util.Map;
  */
 public interface PrizeMapper extends BaseMapper<Prize> {
 
-    List<Map<String, Object>> selectLists(@Param("page") Page<Prize> page, @Param("phone") String phone, @Param("invoiceId") String invoiceId, @Param("idCardNum") String idCardNum, @Param("type") Integer type);
+    List<Map<String, Object>> selectLists(@Param("page") Page<Prize> page, @Param("phone") String phone, @Param("number") Integer number, @Param("invoiceId") String invoiceId, @Param("idCardNum") String idCardNum, @Param("type") Integer type);
 }

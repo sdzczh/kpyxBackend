@@ -17,5 +17,5 @@ import java.util.Map;
  */
 public interface IPrizeService extends IService<Prize> {
 
-    List<Map<String, Object>> selectLists(Page<Prize> page, String phone, String invoiceId, String idCardNum, Integer type);
+    List<Map<String, Object>> selectLists(Page<Prize> page, String phone, Integer number, String invoiceId, String idCardNum, Integer type);
 }

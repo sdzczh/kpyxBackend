@@ -48,6 +48,7 @@ PrizeInfoDlg.collectData = function() {
     .set('id')
     .set('invoiceId')
     .set('type')
+    .set('number')
     .set('createTime')
     .set('updateTime');
 }

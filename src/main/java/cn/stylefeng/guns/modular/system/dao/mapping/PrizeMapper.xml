@@ -18,7 +18,7 @@
 
     <select id="selectLists" resultType="map">
         select
-        ua.id, ui.invoice_id, ui.phone, ui.id_card_num, ua.type, ua.create_time, ua.update_time
+        ua.id, ui.invoice_id, ui.phone, ui.id_card_num, ua.type, ua.number,  ua.create_time, ua.update_time
         from prize ua left join invoice ui on ua.invoice_id = ui.id
         where 1 = 1
         <if test="phone != null and phone != ''">
@@ -29,6 +29,9 @@
         </if>
         <if test="idCardNum != null and idCardNum != ''">
             and ui.id_card_num like CONCAT('%',#{idCardNum},'%')
+        </if>
+        <if test="number != number">
+            and ua.number = #{number}
         </if>
         <if test="type != null">
             and ua.type = #{type}

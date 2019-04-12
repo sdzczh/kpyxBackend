@@ -68,9 +68,9 @@ public class PrizeController extends BaseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(String phone, String invoiceId, String idCardNum, Integer type) {
+    public Object list(String phone, String invoiceId, String idCardNum, Integer number, Integer type) {
         Page<Prize> page = new PageFactory<Prize>().defaultPage();
-        List<Map<String, Object>> list = prizeService.selectLists(page, phone, invoiceId, idCardNum, type);
+        List<Map<String, Object>> list = prizeService.selectLists(page, phone, number, invoiceId, idCardNum, type);
         page.setRecords(new PrizeWarpper(list).wrap());
         return new PageInfoBT<>(page);
     }

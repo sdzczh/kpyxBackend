@@ -18,6 +18,7 @@ Prize.initColumn = function () {
             {title: '发票编码', field: 'invoice_id', visible: true, align: 'center', valign: 'middle'},
             {title: '手机号', field: 'phone', visible: true, align: 'center', valign: 'middle'},
             {title: '身份证号', field: 'id_card_num', visible: true, align: 'center', valign: 'middle'},
+            {title: '期数', field: 'number', visible: true, align: 'center', valign: 'middle'},
             {title: '中奖类型', field: 'Type', visible: true, align: 'center', valign: 'middle'},
             {title: '创建时间', field: 'create_time', visible: true, align: 'center', valign: 'middle'},
             {title: '更新时间', field: 'update_time', visible: true, align: 'center', valign: 'middle'}
@@ -95,6 +96,7 @@ Prize.search = function () {
     queryData['invoiceId'] = $("#invoiceId").val();
     queryData['idCardNum'] = $("#idCardNum").val();
     queryData['type'] = $("#type").val();
+    queryData['number'] = $("#number").val();
     Prize.table.refresh({query: queryData});
 };
 Prize.reset = function () {
@@ -102,6 +104,7 @@ Prize.reset = function () {
     $("#invoiceId").val("");
     $("#idCardNum").val("");
     $("#type").val("");
+    $("#number").val("");
 
     Prize.search();
 };
