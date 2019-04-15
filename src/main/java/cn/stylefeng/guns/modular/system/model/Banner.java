@@ -39,6 +39,7 @@ public class Banner extends Model<Banner> {
      * 超链接地址
      */
     private String href;
+    private String title;
     /**
      * 创建时间
      */
@@ -65,6 +66,14 @@ public class Banner extends Model<Banner> {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getImgUrl() {

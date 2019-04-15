@@ -18,6 +18,7 @@ Banner.initColumn = function () {
             {title: 'Banner类型 0顶部 1中部', field: 'type', visible: true, align: 'center', valign: 'middle'},
             {title: 'BannerUrl', field: 'imgUrl', visible: true, align: 'center', valign: 'middle'},
             {title: '超链接地址', field: 'href', visible: true, align: 'center', valign: 'middle'},
+            {title: '标题', field: 'title', visible: true, align: 'center', valign: 'middle'},
             {title: '创建时间', field: 'createTime', visible: true, align: 'center', valign: 'middle'},
             {title: '更新时间', field: 'updateTime', visible: true, align: 'center', valign: 'middle'}
     ];

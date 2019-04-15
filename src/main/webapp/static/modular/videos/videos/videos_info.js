@@ -48,6 +48,7 @@ VideosInfoDlg.collectData = function() {
     .set('id')
     .set('title')
     .set('videoUrl')
+    .set('imgUrl')
     .set('createTime')
     .set('updateTime');
 }

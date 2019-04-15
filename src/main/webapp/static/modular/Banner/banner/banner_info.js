@@ -48,6 +48,7 @@ BannerInfoDlg.collectData = function() {
     .set('id')
     .set('type')
     .set('imgUrl')
+    .set('title')
     .set('href')
     .set('createTime')
     .set('updateTime');

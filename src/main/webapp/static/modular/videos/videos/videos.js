@@ -17,6 +17,7 @@ Videos.initColumn = function () {
             {title: 'ID', field: 'id', visible: true, align: 'center', valign: 'middle'},
             {title: '视频名称', field: 'title', visible: true, align: 'center', valign: 'middle'},
             {title: '视频地址', field: 'videoUrl', visible: true, align: 'center', valign: 'middle'},
+            {title: '封面地址', field: 'imgUrl', visible: true, align: 'center', valign: 'middle'},
             {title: '创建时间', field: 'createTime', visible: true, align: 'center', valign: 'middle'},
             {title: '更新时间', field: 'updateTime', visible: true, align: 'center', valign: 'middle'}
     ];

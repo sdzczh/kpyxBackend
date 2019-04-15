@@ -35,6 +35,8 @@ public class Videos extends Model<Videos> {
      */
     @TableField("video_url")
     private String videoUrl;
+    @TableField("img_url")
+    private String imgUrl;
     /**
      * 创建时间
      */
@@ -61,6 +63,14 @@ public class Videos extends Model<Videos> {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getVideoUrl() {

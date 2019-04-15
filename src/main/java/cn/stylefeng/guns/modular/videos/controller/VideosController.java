@@ -75,17 +75,22 @@ public class VideosController extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add(Videos videos, @RequestParam("file") MultipartFile file) {
-        if (file.isEmpty()) {
+    public Object add(Videos videos, @RequestParam("file") MultipartFile file, @RequestParam("fileImg") MultipartFile fileImg) {
+        if (file.isEmpty() || fileImg.isEmpty()) {
             return "上传失败，请选择文件";
         }
 
         String fileName = file.getOriginalFilename();
-        String filePath = "i:/img/";
+        String imgName = fileImg.getOriginalFilename();
+        String filePath = "i:/img/video";
+        String imgFilePath = "i:/img/img";
         File dest = new File(filePath + fileName);
+        File destImg = new File(imgFilePath + imgName);
         try {
             file.transferTo(dest);
+            fileImg.transferTo(destImg);
             videos.setVideoUrl(filePath + fileName);
+            videos.setImgUrl(imgFilePath + imgName);
             videosService.insert(videos);
         } catch (IOException e) {
             System.out.println(e.getMessage());
