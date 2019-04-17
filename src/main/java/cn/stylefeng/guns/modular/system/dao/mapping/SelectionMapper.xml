@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.SelectionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.Selection">
+        <id column="id" property="id" />
+        <result column="invoice_id" property="invoiceId" />
+        <result column="number" property="number" />
+        <result column="state" property="state" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, invoice_id, number, state, create_time, update_time
+    </sql>
+
+    <select id="selectLists" resultType="map">
+        select
+        ua.id, ui.invoice_id, ui.invoice_code, ui.phone, ui.id_card_num, ua.state, ua.number,ui.create_date,  ua.create_time, ua.update_time
+        from selection ua left join invoice ui on ua.invoice_id = ui.id
+        where 1 = 1
+        <if test="phone != null and phone != ''">
+            and ui.phone like CONCAT('%',#{phone},'%')
+        </if>
+        <if test="invoiceId != null and invoiceId != ''">
+            and ui.invoice_id like CONCAT('%',#{invoiceId},'%')
+        </if>
+        <if test="idCardNum != null and idCardNum != ''">
+            and ui.id_card_num like CONCAT('%',#{idCardNum},'%')
+        </if>
+        <if test="number != number">
+            and ua.number = #{number}
+        </if>
+    </select>
+</mapper>
