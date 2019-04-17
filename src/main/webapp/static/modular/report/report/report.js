@@ -23,7 +23,10 @@ Report.initColumn = function () {
             {title: '经济性质', field: 'economicNature', visible: true, align: 'center', valign: 'middle'},
             {title: '证明信息', field: 'proveInformation', visible: true, align: 'center', valign: 'middle'},
             {title: '举报内容', field: 'content', visible: true, align: 'center', valign: 'middle'},
-            {title: '图片地址', field: 'imgUrl', visible: true, align: 'center', valign: 'middle'},
+            {title: '图片地址', visible: true, align: 'center', valign: 'middle',
+                formatter: function (value, row, index) {
+                    return "<a href=" + row.imgUrl+ "  target='view_window'><img width='100px' height='100px' src=" + row.imgUrl+ "></a>"
+                }},
             {title: '创建时间', field: 'createTime', visible: true, align: 'center', valign: 'middle'},
             {title: '更新时间', field: 'updateTime', visible: true, align: 'center', valign: 'middle'}
     ];
