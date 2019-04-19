@@ -15,8 +15,8 @@ Prize.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
             {title: 'ID', field: 'id', visible: true, align: 'center', valign: 'middle'},
-            {title: '发票代码', field: 'invoice_id', visible: true, align: 'center', valign: 'middle'},
-            {title: '发票编码', field: 'invoice_code', visible: true, align: 'center', valign: 'middle'},
+            {title: '发票代码', field: 'invoice_code', visible: true, align: 'center', valign: 'middle'},
+            {title: '发票编码', field: 'invoice_id', visible: true, align: 'center', valign: 'middle'},
             {title: '手机号', field: 'phone', visible: true, align: 'center', valign: 'middle'},
             {title: '身份证号', field: 'id_card_num', visible: true, align: 'center', valign: 'middle'},
             {title: '期数', field: 'number', visible: true, align: 'center', valign: 'middle'},

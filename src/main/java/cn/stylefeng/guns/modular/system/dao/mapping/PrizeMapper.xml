@@ -30,7 +30,7 @@
         <if test="idCardNum != null and idCardNum != ''">
             and ui.id_card_num like CONCAT('%',#{idCardNum},'%')
         </if>
-        <if test="number != number">
+        <if test="number != null">
             and ua.number = #{number}
         </if>
         <if test="type != null">
