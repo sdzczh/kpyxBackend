@@ -34,5 +34,6 @@
         <if test="number != number">
             and ua.number = #{number}
         </if>
+        order by id desc
     </select>
 </mapper>

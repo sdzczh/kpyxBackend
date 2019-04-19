@@ -36,5 +36,6 @@
         <if test="type != null">
             and ua.type = #{type}
         </if>
+        order by id desc
     </select>
 </mapper>

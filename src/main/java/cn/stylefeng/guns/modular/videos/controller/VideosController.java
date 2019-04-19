@@ -82,8 +82,8 @@ public class VideosController extends BaseController {
 
         String fileName = file.getOriginalFilename();
         String imgName = fileImg.getOriginalFilename();
-        String filePath = "i:/img/video";
-        String imgFilePath = "i:/img/img";
+        String filePath = "c:/video";
+        String imgFilePath = "c:/img";
         File dest = new File(filePath + fileName);
         File destImg = new File(imgFilePath + imgName);
         try {
