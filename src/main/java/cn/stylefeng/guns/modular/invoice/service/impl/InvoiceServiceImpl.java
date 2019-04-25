@@ -11,12 +11,15 @@ import cn.stylefeng.guns.modular.system.dao.InvoiceMapper;
 import cn.stylefeng.guns.modular.invoice.service.IInvoiceService;
 import cn.stylefeng.guns.modular.system.model.Selection;
 import cn.stylefeng.guns.modular.system.model.Sysparam;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -30,6 +33,7 @@ import java.util.*;
  */
 @Slf4j
 @Service
+@Transactional
 public class InvoiceServiceImpl extends ServiceImpl<InvoiceMapper, Invoice> implements IInvoiceService {
 
     @Autowired
@@ -52,14 +56,16 @@ public class InvoiceServiceImpl extends ServiceImpl<InvoiceMapper, Invoice> impl
     }
 
     @Override
-    public void draw(Integer amount) {
-        String key = SysparamKeys.DRAW_START_ID;
-        Sysparam sysparam = sysparamService.queryByKey(key);
-        String startId = sysparam.getKeyValue();
+    public String draw(Integer amount) {
         EntityWrapper entityWrapper = new EntityWrapper();
-        entityWrapper.gt("id", startId);
         entityWrapper.eq("state", 1);
         List<Invoice> list = invoiceMapper.selectList(entityWrapper);
+        Map<String, Object> map = new HashMap<>();
+        if(list.size() == 0){
+            map.put("code", 20001);
+            map.put("msg", "没有符合条件的抽奖人员");
+            return JSONObject.toJSONString(map);
+        }
         List<Integer> selectList = new LinkedList<>();
         for(Invoice invoice : list){
             selectList.add(invoice.getId());
@@ -68,15 +74,10 @@ public class InvoiceServiceImpl extends ServiceImpl<InvoiceMapper, Invoice> impl
         Collections.shuffle(list);
         //中奖名单id
         Set<Integer> set = DrawUtils.draw(amount, selectList);
-        Map<String, Object> map = new HashMap<>();
-        List<Selection> selectionList = selectionService.selectAll(map);
-        Selection selection = selectionList.get(0);
-        int number;
-        if(selection == null){
-            number = 1;
-        }else{
-            number = selection.getNumber() + 1;
-        }
+        Selection selection;
+        String key = SysparamKeys.DRAW_NUMBER;
+        Sysparam sysparam = sysparamService.queryByKey(key);
+        int number = Integer.valueOf(sysparam.getKeyValue());
         for(Integer index : set){
             //插入选中表
             selection = new Selection();
@@ -84,6 +85,14 @@ public class InvoiceServiceImpl extends ServiceImpl<InvoiceMapper, Invoice> impl
             selection.setNumber(number);
             selection.setState(Const.STATE_ON);
             selectionService.insertSelective(selection);
+
+            //修改状态
+            Invoice invoice = invoiceMapper.selectById(index);
+            invoice.setState(0);
+            invoiceMapper.updateById(invoice);
         }
+        map.put("code", 10000);
+        map.put("msg", "抽奖完成");
+        return JSONObject.toJSONString(map);
     }
 }

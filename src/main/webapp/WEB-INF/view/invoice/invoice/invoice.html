@@ -29,6 +29,12 @@
                                 <#button name="搜索" icon="fa-search" clickFun="Invoice.search()"/>
                                 <#button name="重置" icon="fa-reply" clickFun="Invoice.reset()"/>
                             </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="amount" name="抽取人数" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="抽奖" icon="fa-check-square" clickFun="draw()"/>
+                            </div>
                         </div>
                         <div class="hidden-xs" id="InvoiceTableToolbar" role="group">
                             @if(shiro.hasPermission("/invoice/add")){

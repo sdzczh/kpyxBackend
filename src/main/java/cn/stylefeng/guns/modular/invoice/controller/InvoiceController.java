@@ -6,13 +6,10 @@ import cn.stylefeng.guns.modular.system.warpper.InvoiceWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
-import org.springframework.web.bind.annotation.RequestParam;
 import cn.stylefeng.guns.modular.system.model.Invoice;
 import cn.stylefeng.guns.modular.invoice.service.IInvoiceService;
 
@@ -113,12 +110,11 @@ public class InvoiceController extends BaseController {
     }
 
     /**
-     * 手动抽奖
+     * 手动抽 奖
      */
-    @RequestMapping(value = "/draw")
+    @PostMapping(value = "/draw")
     @ResponseBody
-    public String draw(Integer number) {
-        invoiceService.draw(number);
-        return "true";
+    public String draw(Integer amount) {
+        return invoiceService.draw(amount);
     }
 }

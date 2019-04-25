@@ -114,3 +114,14 @@ $(function () {
     table.setPaginationType("server");
     Invoice.table = table.init();
 });
+
+/**
+ * 手动抽奖
+ */
+function draw(amount) {
+    amount = $("#amount").val();
+    $.post("/invoice/draw", {amount : amount}, function (res) {
+        res = JSON.parse(alert);
+        alert(res.msg);
+    })
+};
