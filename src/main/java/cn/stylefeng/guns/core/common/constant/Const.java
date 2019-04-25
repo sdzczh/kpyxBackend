@@ -48,4 +48,5 @@ public interface Const {
      */
     String API_MENU_NAME = "接口文档";
 
+    Integer STATE_ON = 1;
 }

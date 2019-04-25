@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface ISysparamService extends IService<Sysparam> {
 
+    Sysparam queryByKey(String key);
 }

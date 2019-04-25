@@ -111,4 +111,14 @@ public class InvoiceController extends BaseController {
     public Object detail(@PathVariable("invoiceId") Integer invoiceId) {
         return invoiceService.selectById(invoiceId);
     }
+
+    /**
+     * 手动抽奖
+     */
+    @RequestMapping(value = "/draw")
+    @ResponseBody
+    public String draw(Integer number) {
+        invoiceService.draw(number);
+        return "true";
+    }
 }

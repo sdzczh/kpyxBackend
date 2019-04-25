@@ -18,4 +18,8 @@ import java.util.Map;
 public interface ISelectionService extends IService<Selection> {
 
     List<Map<String, Object>> selectLists(Page<Selection> page, String phone, Integer number, String invoiceId, String idCardNum);
+
+    List<Selection> selectAll(Map<String, Object> map);
+
+    void insertSelective(Selection selection);
 }
