@@ -5,7 +5,6 @@ import cn.stylefeng.guns.core.common.constant.SysparamKeys;
 import cn.stylefeng.guns.core.util.DrawUtils;
 import cn.stylefeng.guns.modular.invoice.service.ISelectionService;
 import cn.stylefeng.guns.modular.syparam.service.ISysparamService;
-import cn.stylefeng.guns.modular.system.dao.SysparamMapper;
 import cn.stylefeng.guns.modular.system.model.Invoice;
 import cn.stylefeng.guns.modular.system.dao.InvoiceMapper;
 import cn.stylefeng.guns.modular.invoice.service.IInvoiceService;
@@ -15,7 +14,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -93,6 +91,15 @@ public class InvoiceServiceImpl extends ServiceImpl<InvoiceMapper, Invoice> impl
         }
         map.put("code", 10000);
         map.put("msg", "抽奖完成，请到入围名单中查看！");
+        return JSONObject.toJSONString(map);
+    }
+
+    @Override
+    public String end() {
+        invoiceMapper.changeState();
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", 10000);
+        map.put("msg", "本期抽奖已结束！");
         return JSONObject.toJSONString(map);
     }
 }

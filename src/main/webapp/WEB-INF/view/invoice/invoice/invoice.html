@@ -35,6 +35,9 @@
                             <div class="col-sm-3">
                                 <#button name="抽奖" icon="fa-check-square" clickFun="draw()"/>
                             </div>
+                            <div class="col-sm-3">
+                                <#button name="结束本期抽奖" icon="fa-close" clickFun="end()"/>
+                            </div>
                         </div>
                         <div class="hidden-xs" id="InvoiceTableToolbar" role="group">
                             @if(shiro.hasPermission("/invoice/add")){

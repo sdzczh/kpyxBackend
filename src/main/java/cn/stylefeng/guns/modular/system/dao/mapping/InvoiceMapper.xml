@@ -21,4 +21,7 @@
         id, invoice_code, invoice_id, phone, id_card_num, amount, state, create_date, create_time, update_time
     </sql>
 
+    <update id="changeState">
+        update invoice set state = 0;
+    </update>
 </mapper>

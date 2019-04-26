@@ -117,4 +117,12 @@ public class InvoiceController extends BaseController {
     public String draw(Integer amount) {
         return invoiceService.draw(amount);
     }
+    /**
+     * 结束本期抽奖
+     */
+    @PostMapping(value = "/end")
+    @ResponseBody
+    public String end() {
+        return invoiceService.end();
+    }
 }

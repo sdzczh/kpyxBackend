@@ -120,8 +120,23 @@ $(function () {
  */
 function draw(amount) {
     amount = $("#amount").val();
-    $.post("/invoice/draw", {amount : amount}, function (res) {
-        var data = JSON.parse(res)
-        Feng.success(data.msg);
-    })
+    var operation = function() {
+        $.post("/invoice/draw", {amount: amount}, function (res) {
+            var data = JSON.parse(res);
+            Feng.success(data.msg);
+        })
+    };
+    Feng.confirm("是否执行本次操作，注意：该操作不可撤销！",operation);
+};
+/**
+ * 结束本期抽奖
+ */
+function end() {
+    var operation = function() {
+        $.post("/invoice/end", {}, function (res) {
+            var data = JSON.parse(res);
+            Feng.success(data.msg);
+        })
+    };
+    Feng.confirm("是否执行本次操作，注意：该操作不可撤销！",operation);
 };

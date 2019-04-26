@@ -13,4 +13,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface InvoiceMapper extends BaseMapper<Invoice> {
 
+    /**
+     * 结束抽奖 state设为0
+     */
+    void changeState();
 }
