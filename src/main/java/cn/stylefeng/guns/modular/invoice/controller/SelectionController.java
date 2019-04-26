@@ -90,8 +90,11 @@ public class SelectionController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete(@RequestParam Integer selectionId) {
-        selectionService.deleteById(selectionId);
+    public Object delete(@RequestParam String ids) {
+        String[] ss = ids.split(",");
+        for (String s : ss) {
+            selectionService.deleteById(Integer.valueOf(s));
+        }
         return SUCCESS_TIP;
     }
 

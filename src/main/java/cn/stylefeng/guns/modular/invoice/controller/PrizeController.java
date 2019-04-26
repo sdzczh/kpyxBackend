@@ -90,8 +90,11 @@ public class PrizeController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete(@RequestParam Integer prizeId) {
-        prizeService.deleteById(prizeId);
+    public Object delete(@RequestParam String ids) {
+        String[] ss = ids.split(",");
+        for (String s : ss) {
+            prizeService.deleteById(Integer.valueOf(s));
+        }
         return SUCCESS_TIP;
     }
 

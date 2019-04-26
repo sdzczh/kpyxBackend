@@ -85,8 +85,11 @@ public class InvoiceController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete(@RequestParam Integer invoiceId) {
-        invoiceService.deleteById(invoiceId);
+    public Object delete(@RequestParam String ids) {
+        String[] ss = ids.split(",");
+        for (String s : ss) {
+            invoiceService.deleteById(Integer.valueOf(s));
+        }
         return SUCCESS_TIP;
     }
 

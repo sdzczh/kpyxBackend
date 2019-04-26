@@ -13,7 +13,7 @@ var Selection = {
  */
 Selection.initColumn = function () {
     return [
-        {field: 'selectItem', radio: true},
+        {field: 'selectItem', checkbox : true},
             {title: 'ID', field: 'id', visible: true, align: 'center', valign: 'middle'},
             {title: '发票代码', field: 'invoice_code', visible: true, align: 'center', valign: 'middle'},
             {title: '发票编码', field: 'invoice_id', visible: true, align: 'center', valign: 'middle'},
@@ -81,13 +81,18 @@ Selection.openSelectionDetail = function () {
  */
 Selection.delete = function () {
     if (this.check()) {
+        var selected = $('#' + this.id).bootstrapTable('getSelections');
+        var ids = "";
+        for(var i = 0; i < selected.length; i++) {
+            ids += selected[i].id + ",";
+        }
         var ajax = new $ax(Feng.ctxPath + "/selection/delete", function (data) {
             Feng.success("删除成功!");
             Selection.table.refresh();
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
-        ajax.set("selectionId",this.seItem.id);
+        ajax.set("ids", ids);
         ajax.start();
     }
 };

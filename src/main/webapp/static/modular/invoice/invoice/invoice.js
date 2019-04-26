@@ -13,7 +13,7 @@ var Invoice = {
  */
 Invoice.initColumn = function () {
     return [
-        {field: 'selectItem', radio: true},
+        {field: 'selectItem', checkbox: true},
             {title: 'ID', field: 'id', visible: true, align: 'center', valign: 'middle'},
             {title: '发票代码', field: 'invoiceCode', visible: true, align: 'center', valign: 'middle'},
             {title: '发票编码', field: 'invoiceId', visible: true, align: 'center', valign: 'middle'},
@@ -78,13 +78,18 @@ Invoice.openInvoiceDetail = function () {
  */
 Invoice.delete = function () {
     if (this.check()) {
-        var ajax = new $ax(Feng.ctxPath + "/invoice/delete", function (data) {
+        var selected = $('#' + this.id).bootstrapTable('getSelections');
+        var ids = "";
+        for(var i = 0; i < selected.length; i++) {
+            ids += selected[i].id + ",";
+        }
+            var ajax = new $ax(Feng.ctxPath + "/invoice/delete", function (data) {
             Feng.success("删除成功!");
             Invoice.table.refresh();
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
-        ajax.set("invoiceId",this.seItem.id);
+        ajax.set("ids",ids);
         ajax.start();
     }
 };
