@@ -115,6 +115,10 @@ $(function () {
     Invoice.table = table.init();
 });
 
+Invoice.export = function () {
+    $('#InvoiceTable').tableExport({type:'excel', fileName: new Date().getTime(), escape:'false'});
+};
+
 /**
  * 手动抽奖
  */

@@ -40,6 +40,10 @@ Selection.check = function () {
     }
 };
 
+Selection.export = function () {
+    $('#SelectionTable').tableExport({type:'excel', fileName: new Date().getTime(), escape:'false'});
+};
+
 /**
  * 点击添加入围名单
  */

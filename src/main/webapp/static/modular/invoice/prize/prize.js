@@ -41,6 +41,11 @@ Prize.check = function () {
     }
 };
 
+
+Prize.export = function () {
+    $('#PrizeTable').tableExport({type:'excel', fileName: new Date().getTime(), escape:'false'});
+};
+
 /**
  * 点击添加中奖记录
  */
