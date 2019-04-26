@@ -92,7 +92,7 @@ public class InvoiceServiceImpl extends ServiceImpl<InvoiceMapper, Invoice> impl
             invoiceMapper.updateById(invoice);
         }
         map.put("code", 10000);
-        map.put("msg", "抽奖完成");
+        map.put("msg", "抽奖完成，请到入围名单中查看！");
         return JSONObject.toJSONString(map);
     }
 }

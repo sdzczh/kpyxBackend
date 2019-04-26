@@ -121,7 +121,7 @@ $(function () {
 function draw(amount) {
     amount = $("#amount").val();
     $.post("/invoice/draw", {amount : amount}, function (res) {
-        res = JSON.parse(alert);
-        alert(res.msg);
+        var data = JSON.parse(res)
+        Feng.success(data.msg);
     })
 };
