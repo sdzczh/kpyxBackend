@@ -1,5 +1,6 @@
 package cn.stylefeng.guns.modular.invoice.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.SysparamKeys;
 import cn.stylefeng.guns.core.util.DrawUtils;
@@ -41,11 +42,17 @@ public class InvoiceServiceImpl extends ServiceImpl<InvoiceMapper, Invoice> impl
     @Autowired
     private ISelectionService selectionService;
     @Override
-    public List<Map<String, Object>> selectLists(Page<Invoice> page, String phone, String invoiceId, String idCardNum, Integer state) {
+    public List<Map<String, Object>> selectLists(Page<Invoice> page, String phone, String invoiceId, String idCardNum, Integer state, String createDate, String createTime) {
         EntityWrapper entityWrapper = new EntityWrapper();
         entityWrapper.like("phone", phone);
         entityWrapper.like("invoice_id", invoiceId);
         entityWrapper.like("id_card_num", idCardNum);
+        if(!StrUtil.isBlank(createDate)) {
+            entityWrapper.ge("create_date", createDate);
+        }
+        if(!StrUtil.isBlank(createTime)) {
+            entityWrapper.ge("create_time", createTime);
+        }
         entityWrapper.orderBy("id", false);
         if(state != null) {
             entityWrapper.eq("state", state);

@@ -47,7 +47,7 @@ Article.openAddArticle = function () {
     var index = layer.open({
         type: 2,
         title: '添加文章管理',
-        area: ['800px', '660px'], //宽高
+        area: ['800px', '520px'], //宽高
         fix: false, //不固定
         maxmin: true,
         content: Feng.ctxPath + '/article/article_add'

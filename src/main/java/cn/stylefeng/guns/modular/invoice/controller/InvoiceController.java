@@ -63,9 +63,9 @@ public class InvoiceController extends BaseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(String phone, String invoiceId, String idCardNum, Integer state) {
+    public Object list(String phone, String invoiceId, String idCardNum, Integer state, String createDate, String createTime) {
         Page<Invoice> page = new PageFactory<Invoice>().defaultPage();
-        List<Map<String, Object>> list = invoiceService.selectLists(page, phone, invoiceId, idCardNum, state);
+        List<Map<String, Object>> list = invoiceService.selectLists(page, phone, invoiceId, idCardNum, state, createDate, createTime);
         page.setRecords(new InvoiceWarpper(list).wrap());
         return new PageInfoBT<>(page);
     }

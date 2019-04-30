@@ -18,12 +18,18 @@
                             <div class="col-sm-2">
                                 <#NameCon id="idCardNum" name="身份证号" />
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-1">
                                 <select id="state" class="form-control">
-                                    <option value="">----请选择发票状态----</option>
+                                    <option value="">请选择发票状态</option>
                                     <option value="0">无效</option>
                                     <option value="1">有效</option>
                                 </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <#TimeCon id="createDate" name="开票日期" isTime="false"/>
+                            </div>
+                            <div class="col-sm-2">
+                                <#TimeCon id="createTime" name="创建时间" isTime="false"/>
                             </div>
                             <div class="col-sm-3">
                                 <#button name="搜索" icon="fa-search" clickFun="Invoice.search()"/>
@@ -59,4 +65,12 @@
     </div>
 </div>
 <script src="${ctxPath}/static/modular/invoice/invoice/invoice.js"></script>
+<script>
+    laydate.render({
+        elem: '#createDate'
+    });
+    laydate.render({
+        elem: '#createTime'
+    });
+</script>
 @}

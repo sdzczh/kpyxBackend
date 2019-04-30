@@ -102,6 +102,8 @@ Invoice.search = function () {
     queryData['phone'] = $("#phone").val();
     queryData['invoiceId'] = $("#invoiceId").val();
     queryData['idCardNum'] = $("#idCardNum").val();
+    queryData['createDate'] = $("#createDate").val();
+    queryData['createTime'] = $("#createTime").val();
     queryData['state'] = $("#state").val();
     Invoice.table.refresh({query: queryData});
 };
@@ -110,6 +112,8 @@ Invoice.reset = function () {
     $("#invoiceId").val("");
     $("#idCardNum").val("");
     $("#state").val("");
+    $("#createDate").val("");
+    $("#createTime").val("");
 
     Invoice.search();
 };

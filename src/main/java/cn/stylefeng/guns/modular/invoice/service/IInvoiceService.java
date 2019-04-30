@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public interface IInvoiceService extends IService<Invoice> {
 
-    List<Map<String, Object>> selectLists(Page<Invoice> page, String phone, String invoiceId, String idCardNum, Integer state);
+    List<Map<String, Object>> selectLists(Page<Invoice> page, String phone, String invoiceId, String idCardNum, Integer state, String createDate, String createTime);
 
     String draw(Integer amount);
 
