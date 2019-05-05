@@ -1,5 +1,8 @@
 package cn.stylefeng.guns.modular.Banner.controller;
 
+import cn.stylefeng.guns.core.common.constant.SysparamKeys;
+import cn.stylefeng.guns.modular.syparam.service.ISysparamService;
+import cn.stylefeng.guns.modular.system.model.Sysparam;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Banner管理控制器
@@ -30,6 +35,8 @@ public class BannerController extends BaseController {
 
     @Autowired
     private IBannerService bannerService;
+    @Autowired
+    private ISysparamService sysparamService;
 
     /**
      * 跳转到Banner管理首页
@@ -76,18 +83,37 @@ public class BannerController extends BaseController {
         if (img_url.isEmpty()) {
             return "上传失败，请选择文件";
         }
-
+        File targetFile;
         String fileName = img_url.getOriginalFilename();
-        String filePath = "i:/img/";
-        File dest = new File(filePath + fileName);
-        try {
-            img_url.transferTo(dest);
-            banner.setImgUrl(filePath + fileName);
-            bannerService.insert(banner);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        if(fileName!=null&&fileName!="") {
+            Sysparam sysPath = sysparamService.queryByKey(SysparamKeys.SYSTEM_URL);
+            String systemPath;
+            if(sysPath != null){
+                systemPath = sysPath.getKeyValue();
+            }else{
+                return "获取系统路径失败";
+            }
+            String filePath = "/home/installPackage/imgs/";
+//            String filePath = "I:/img";
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            String fileAdd = sdf.format(new Date());
+            //获取文件夹路径
+            File dest = new File(filePath + "/" + fileAdd + "/");
+            //如果文件夹不存在则创建
+            if (!dest.exists() && !dest.isDirectory()) {
+                dest.mkdir();
+            }
+            targetFile = new File(dest, fileName);
+            try {
+                img_url.transferTo(targetFile);
+                banner.setImgUrl(systemPath + "/file/showImg?imgUrl=" + fileAdd + "/" + fileName);
+                bannerService.insert(banner);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+            return SUCCESS_TIP;
         }
-        return SUCCESS_TIP;
+        return "上传失败，请选择文件";
     }
 
     /**

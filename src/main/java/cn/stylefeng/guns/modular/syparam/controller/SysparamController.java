@@ -101,4 +101,5 @@ public class SysparamController extends BaseController {
     public Object detail(@PathVariable("sysparamId") Integer sysparamId) {
         return sysparamService.selectById(sysparamId);
     }
+
 }
