@@ -13,7 +13,7 @@ var Article = {
  */
 Article.initColumn = function () {
     return [
-        {field: 'selectItem', radio: true},
+        {field: 'selectItem', checkbox: true},
             {title: 'ID', field: 'id', visible: true, align: 'center', valign: 'middle'},
             {title: '文章题目', field: 'title', visible: true, align: 'center', valign: 'middle'},
             {title: '作者名称', field: 'author', visible: true, align: 'center', valign: 'middle'},
@@ -93,13 +93,18 @@ Article.openArticleDetail = function () {
  */
 Article.delete = function () {
     if (this.check()) {
-        var ajax = new $ax(Feng.ctxPath + "/article/delete", function (data) {
+        var selected = $('#' + this.id).bootstrapTable('getSelections');
+        var ids = "";
+        for(var i = 0; i < selected.length; i++) {
+            ids += selected[i].id + ",";
+        }
+            var ajax = new $ax(Feng.ctxPath + "/article/delete", function (data) {
             Feng.success("删除成功!");
             Article.table.refresh();
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
-        ajax.set("articleId",this.seItem.id);
+        ajax.set("ids",ids);
         ajax.start();
     }
 };

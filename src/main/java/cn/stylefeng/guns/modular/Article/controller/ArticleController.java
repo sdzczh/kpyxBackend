@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -109,10 +111,14 @@ public class ArticleController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete(@RequestParam Integer articleId) {
-        articleService.deleteById(articleId);
+    public Object delete(@RequestParam String ids) {
+        String[] ss = ids.split(",");
+        for (String s : ss) {
+            articleService.deleteById(Integer.valueOf(s));
+        }
         return SUCCESS_TIP;
     }
+
 
     /**
      * 修改文章管理
